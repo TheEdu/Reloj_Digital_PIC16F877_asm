@@ -1,0 +1,77 @@
+Warning[205] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 3 : Found directive in column 1. (include)
+Message[301] C:\PROGRAM FILES (X86)\MICROCHIP\MPASM SUITE\P16F877.INC 33 : MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+Warning[205] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 7 : Found directive in column 1. (CBLOCK)
+Warning[205] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 23 : Found directive in column 1. (ENDC)
+Warning[205] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 25 : Found directive in column 1. (ORG)
+Warning[205] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 28 : Found directive in column 1. (ORG)
+Warning[205] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 32 : Found directive in column 1. (ORG)
+Message[302] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 57 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 58 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 59 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 60 : Using default destination of 1 (file).
+Message[302] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 60 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 62 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 63 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 65 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 66 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 67 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 83 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 107 : Found label after column 1. (Infinite_loop)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 113 : Found label after column 1. (TABLA)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 127 : Found label after column 1. (Interrupt_handler)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 132 : Found label after column 1. (Retorno)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 137 : Found label after column 1. (Timer0_Interrupt)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 140 : Found label after column 1. (Retornar_Rutina_Contador_500)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 142 : Found label after column 1. (Retornar_Refresh)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 150 : Found label after column 1. (Button_Interrupt)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 153 : Found label after column 1. (MODO_CONFIGURACION)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 161 : Found label after column 1. (Retornar_Refresh_Button)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 165 : Found label after column 1. (RETURN_RESET_CONTROL)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 175 : Found label after column 1. (End_Button_Logic)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 177 : Found label after column 1. (FIN_MODO_CONFIGURACION)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 182 : Found label after column 1. (RESET_CONTROL_BOTON)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 192 : Found label after column 1. (Button_Plus_Second)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 204 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 207 : Found label after column 1. (Button_Plus_Second_2)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 214 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 217 : Found label after column 1. (Reset_SD)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 222 : Found label after column 1. (Button_Plus_Minute)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 233 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 236 : Found label after column 1. (Button_Plus_Minute_2)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 243 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 246 : Found label after column 1. (Reset_MD)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 251 : Found label after column 1. (Button_Plus_Hour)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 266 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 269 : Found label after column 1. (Button_Plus_Hour_9HU)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 272 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 275 : Found label after column 1. (Button_Plus_Hour_2HD)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 280 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 283 : Found label after column 1. (Button_Plus_Hour_2HD_3HU)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 289 : Found label after column 1. (Rutina_Contador_500)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 293 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 296 : Found label after column 1. (Rutina_Contador_500_P2)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 300 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 303 : Found label after column 1. (Time_Increase)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 314 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 315 : Found label after column 1. (End_Time_Logic)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 319 : Found label after column 1. (CONTINUAR_SD)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 326 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 329 : Found label after column 1. (CONTINUAR_MU)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 336 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 339 : Found label after column 1. (CONTINUAR_MD)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 346 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 349 : Found label after column 1. (CONTINUAR_HU)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 360 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 363 : Found label after column 1. (CONTINUAR_9HU)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 366 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 369 : Found label after column 1. (CONTINUAR_2HD)
+Message[305] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 374 : Using default destination of 1 (file).
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 377 : Found label after column 1. (CONTINUAR_2HD_3HU)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 383 : Found label after column 1. (Refresh)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 397 : Found label after column 1. (Cambiar_Display0)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 409 : Found label after column 1. (Cambiar_Display1)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 421 : Found label after column 1. (Cambiar_Display2)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 433 : Found label after column 1. (Cambiar_Display3)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 445 : Found label after column 1. (Cambiar_Display4)
+Warning[207] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 457 : Found label after column 1. (Cambiar_Display5)
+Warning[205] C:\USERS\EDU\DESKTOP\RELOJ DIGITAL\RELOJ.ASM 469 : Found directive in column 1. (END)
