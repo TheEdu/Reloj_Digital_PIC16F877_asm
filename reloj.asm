@@ -80,11 +80,12 @@ ORG 0X10 ; Comienzo del programa principal
 
 	;Inicializo PORD en 0 y apago todos los Displays
 	CLRF PORTD
+	CLRF PORTC
 	COMF PORTC  ; Apago todos los displays
 
 
-	; Inicializo el Timer 0 en 131 (con 134 en TMRO y 001 en el prescaler funciona casi perfecto)
-	MOVLW d'134'
+	; Inicializo el Timer 0 en 131 (con 141 en TMRO y 001 en el prescaler funciona casi perfecto)
+	MOVLW d'141'
 	MOVWF TMR0
 
 
@@ -142,7 +143,7 @@ ORG 0X10 ; Comienzo del programa principal
 		Retornar_Refresh:			   ; Vuelvo de la rutina anterior
 		; Reseteando Timer0
 		BCF INTCON,T0IF  ; Reseteo el timer 0
-		MOVLW d'134'       ; Reseteo el timer 0
+		MOVLW d'141'       ; Reseteo el timer 0
 		MOVWF TMR0       ; Reseteo el timer 0
 		GOTO Retorno
 
@@ -166,13 +167,16 @@ ORG 0X10 ; Comienzo del programa principal
 
 		BTFSC PORTB,RB1
 		GOTO Button_Plus_Second
+		End_Button_Second_Logic:
+
 		BTFSC PORTB,RB2
 		GOTO Button_Plus_Minute
+		End_Button_Minute_Logic:
+
 		BTFSC PORTB,RB3
 		GOTO Button_Plus_Hour
-
-
-		End_Button_Logic:		
+		End_Button_Hour_Logic
+	
 		GOTO MODO_CONFIGURACION
 		FIN_MODO_CONFIGURACION:
 		BCF INTCON,RBIF  ; Reseteo el RB change
@@ -193,7 +197,7 @@ ORG 0X10 ; Comienzo del programa principal
 
 		MOVFW CONTROL_SEGUNDOS_BOTON
 		SKPZ
-		GOTO End_Button_Logic
+		GOTO End_Button_Second_Logic
 		MOVLW 0XFF
 		MOVWF CONTROL_SEGUNDOS_BOTON
 
@@ -202,7 +206,7 @@ ORG 0X10 ; Comienzo del programa principal
 		SKPNZ
 		GOTO Button_Plus_Second_2
 		INCF SU
-		GOTO End_Button_Logic
+		GOTO End_Button_Second_Logic
 
 	Button_Plus_Second_2:
 		MOVLW 0X00
@@ -212,17 +216,17 @@ ORG 0X10 ; Comienzo del programa principal
 		SKPNZ
 		GOTO Reset_SD
 		INCF SD
-		GOTO End_Button_Logic
+		GOTO End_Button_Second_Logic
 
 	Reset_SD:
 		MOVLW 0X00
 		MOVWF SD
-		GOTO End_Button_Logic
+		GOTO End_Button_Second_Logic
 
 	Button_Plus_Minute:
 		MOVFW CONTROL_MINUTOS_BOTON
 		SKPZ
-		GOTO End_Button_Logic
+		GOTO End_Button_Minute_Logic
 		MOVLW 0XFF
 		MOVWF CONTROL_MINUTOS_BOTON
 
@@ -231,7 +235,7 @@ ORG 0X10 ; Comienzo del programa principal
 		SKPNZ
 		GOTO Button_Plus_Minute_2
 		INCF MU
-		GOTO End_Button_Logic
+		GOTO End_Button_Minute_Logic
 
 	Button_Plus_Minute_2:
 		MOVLW 0X00
@@ -241,17 +245,17 @@ ORG 0X10 ; Comienzo del programa principal
 		SKPNZ
 		GOTO Reset_MD
 		INCF MD
-		GOTO End_Button_Logic
+		GOTO End_Button_Minute_Logic
 
 	Reset_MD:
 		MOVLW 0X00
 		MOVWF MD
-		GOTO End_Button_Logic
+		GOTO End_Button_Minute_Logic
 
 	Button_Plus_Hour:
 		MOVFW CONTROL_HORAS_BOTON
 		SKPZ
-		GOTO End_Button_Logic
+		GOTO End_Button_Hour_Logic
 		MOVLW 0XFF
 		MOVWF CONTROL_HORAS_BOTON
 
@@ -264,13 +268,13 @@ ORG 0X10 ; Comienzo del programa principal
 		SKPNZ
 		GOTO Button_Plus_Hour_9HU
 		INCF HU	
-		GOTO End_Button_Logic
+		GOTO End_Button_Hour_Logic
 	
 	Button_Plus_Hour_9HU:
 		MOVLW 0X00
 		MOVWF HU
 		INCF HD
-		GOTO End_Button_Logic
+		GOTO End_Button_Hour_Logic
 
 	Button_Plus_Hour_2HD:
 		MOVFW HU
@@ -278,13 +282,13 @@ ORG 0X10 ; Comienzo del programa principal
 		SKPNZ
 		GOTO Button_Plus_Hour_2HD_3HU
 		INCF HU
-		GOTO End_Button_Logic
+		GOTO End_Button_Hour_Logic
 
 	Button_Plus_Hour_2HD_3HU:
 		MOVLW 0X00
 		MOVWF HU
 		MOVWF HD
-		GOTO End_Button_Logic
+		GOTO End_Button_Hour_Logic
 
 	Rutina_Contador_500:
 		COMF CONTADOR_500_P1,0
@@ -412,6 +416,7 @@ ORG 0X10 ; Comienzo del programa principal
 		MOVFW MU ; Muevo el contenido de MU a W
 		call TABLA
 		MOVWF PORTD
+		BSF PORTD,RD7 ; pone el punto
 		BCF PORTC,RC2
 		;Negrada para agregar el refresh al modo configuracion
 		BTFSC PORTB,RB0
@@ -436,6 +441,7 @@ ORG 0X10 ; Comienzo del programa principal
 		MOVFW HU ; Muevo el contenido de HU a W
 		call TABLA
 		MOVWF PORTD
+		BSF PORTD,RD7 ; pone el punto
 		BCF PORTC,RC4
 		;Negrada para agregar el refresh al modo configuracion
 		BTFSC PORTB,RB0
