@@ -61,7 +61,7 @@ ORG 0X10 ; Comienzo del programa principal
 
 		BCF OPTION_REG, T0CS ; Selecciono la clock source como interna (TOCS = 0 --> Internal instruction cycle clock (CLKOUT) as source)
 		BCF OPTION_REG, PSA ; Activo el Prescaler (PSA = 0 --> Prescaler is assigned to the Timer0 module)
-		; Seteo del prescaler en 011 (valor teorico calculado para TMR0 = 131, pero no funciona como se espero, asi que esta en 001)
+		; Seteo del prescaler en 001
 		BCF OPTION_REG, PS2 ; Cleaneo el bit 2 del prescaler
 		BCF OPTION_REG, PS1	; Cleaneo el bit 1 del prescaler
 		BSF OPTION_REG, PS0 ; Seteo el bit 0 del prescaler (por magia me da 2.1ms)
@@ -69,8 +69,8 @@ ORG 0X10 ; Comienzo del programa principal
     BCF  STATUS,RP0 ; Vuelvo a la pagina 0
 	
 
-	;HORA POR DEFECTO 22:22:22
-	MOVLW d'2'
+	;HORA POR DEFECTO 00:00:00
+	MOVLW d'0'
 	MOVWF SU
 	MOVWF SD	
 	MOVWF MU
@@ -84,8 +84,8 @@ ORG 0X10 ; Comienzo del programa principal
 	COMF PORTC  ; Apago todos los displays
 
 
-	; Inicializo el Timer 0 en 131 (con 141 en TMRO y 001 en el prescaler funciona casi perfecto)
-	MOVLW d'141'
+	; Inicializo el Timer 0 en 134
+	MOVLW d'134'
 	MOVWF TMR0
 
 
@@ -143,7 +143,7 @@ ORG 0X10 ; Comienzo del programa principal
 		Retornar_Refresh:			   ; Vuelvo de la rutina anterior
 		; Reseteando Timer0
 		BCF INTCON,T0IF  ; Reseteo el timer 0
-		MOVLW d'141'       ; Reseteo el timer 0
+		MOVLW d'134'       ; Reseteo el timer 0
 		MOVWF TMR0       ; Reseteo el timer 0
 		GOTO Retorno
 

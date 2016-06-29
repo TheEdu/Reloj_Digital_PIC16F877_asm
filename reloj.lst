@@ -1,4 +1,4 @@
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE  1
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -57,7 +57,7 @@ Warning[205]: Found directive in column 1. (ORG)
 0010   3000           00035         MOVLW 0X00
 0011   00BC           00036         MOVWF CONTROL_SEGUNDOS_BOTON
 0012   00BD           00037         MOVWF CONTROL_MINUTOS_BOTON
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE  2
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -99,8 +99,7 @@ Message[302]: Register in operand not in bank 0.  Ensure that bank bits are corr
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
 0026   1181           00063                 BCF OPTION_REG, PSA ; Activo el Prescaler (PSA = 0 --> Prescaler is assigned to the Time
                             r0 module)
-                      00064                 ; Seteo del prescaler en 011 (valor teorico calculado para TMR0 = 131, pero no funciona 
-                            como se espero, asi que esta en 001)
+                      00064                 ; Seteo del prescaler en 001
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
 0027   1101           00065                 BCF OPTION_REG, PS2 ; Cleaneo el bit 2 del prescaler
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
@@ -111,18 +110,18 @@ Message[302]: Register in operand not in bank 0.  Ensure that bank bits are corr
 002A   1283           00069     BCF  STATUS,RP0 ; Vuelvo a la pagina 0
                       00070         
                       00071 
-                      00072         ;HORA POR DEFECTO 22:22:22
-002B   3002           00073         MOVLW d'2'
+                      00072         ;HORA POR DEFECTO 00:00:00
+002B   3000           00073         MOVLW d'0'
 002C   00B0           00074         MOVWF SU
 002D   00B1           00075         MOVWF SD        
 002E   00B2           00076         MOVWF MU
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE  3
+002F   00B3           00077         MOVWF MD
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-002F   00B3           00077         MOVWF MD
 0030   00B4           00078         MOVWF HU
 0031   00B5           00079         MOVWF HD
                       00080 
@@ -133,8 +132,8 @@ Message[305]: Using default destination of 1 (file).
 0034   0987           00084         COMF PORTC  ; Apago todos los displays
                       00085 
                       00086 
-                      00087         ; Inicializo el Timer 0 en 131 (con 141 en TMRO y 001 en el prescaler funciona casi perfecto)
-0035   308D           00088         MOVLW d'141'
+                      00087         ; Inicializo el Timer 0 en 134
+0035   3086           00088         MOVLW d'134'
 0036   0081           00089         MOVWF TMR0
                       00090 
                       00091 
@@ -175,13 +174,13 @@ Warning[207]: Found label after column 1. (TABLA)
 004D   3467           00124                 retlw   d'103' ;9
                       00125 
                       00126 
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE  4
+Warning[207]: Found label after column 1. (Interrupt_handler)
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-Warning[207]: Found label after column 1. (Interrupt_handler)
 004E                  00127         Interrupt_handler: ; Rutina de interrupcion
 004E   138B           00128                 BCF INTCON,GIE ; Desactivo las interrupciones globales
 004F   190B           00129                 BTFSC INTCON,T0IF ; Si TOIF = 0 --> Salta la siguiente instruccion
@@ -205,7 +204,7 @@ Warning[207]: Found label after column 1. (Retornar_Refresh)
 0058                  00143                 Retornar_Refresh:                          ; Vuelvo de la rutina anterior
                       00144                 ; Reseteando Timer0
 0058   110B           00145                 BCF INTCON,T0IF  ; Reseteo el timer 0
-0059   308D           00146                 MOVLW d'141'       ; Reseteo el timer 0
+0059   3086           00146                 MOVLW d'134'       ; Reseteo el timer 0
 005A   0081           00147                 MOVWF TMR0       ; Reseteo el timer 0
 005B   2???           00148                 GOTO Retorno
                       00149 
@@ -234,13 +233,13 @@ Warning[207]: Found label after column 1. (RETURN_RESET_CONTROL)
                       00167 
 0062   1886           00168                 BTFSC PORTB,RB1
 0063   2???           00169                 GOTO Button_Plus_Second
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE  5
+Warning[207]: Found label after column 1. (End_Button_Second_Logic)
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-Warning[207]: Found label after column 1. (End_Button_Second_Logic)
 0064                  00170                 End_Button_Second_Logic:
                       00171 
 0064   1906           00172                 BTFSC PORTB,RB2
@@ -293,13 +292,13 @@ Warning[207]: Found label after column 1. (Button_Plus_Second_2)
 007F   00B0           00212                 MOVWF SU
 0080   0831           00213                 MOVFW SD
 0081   023A           00214                 SUBWF CINCO,0
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE  6
+0082   1903           00215                 SKPNZ
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE  6
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0082   1903           00215                 SKPNZ
 0083   2???           00216                 GOTO Reset_SD
 Message[305]: Using default destination of 1 (file).
 0084   0AB1           00217                 INCF SD
@@ -352,13 +351,13 @@ Warning[207]: Found label after column 1. (Button_Plus_Hour)
 00A1   2???           00257                 GOTO End_Button_Hour_Logic
 00A2   30FF           00258                 MOVLW 0XFF
 00A3   00BE           00259                 MOVWF CONTROL_HORAS_BOTON
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE  7
+                      00260 
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE  7
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-                      00260 
 00A4   0835           00261                 MOVFW HD
 00A5   0238           00262                 SUBWF DOS,0
 00A6   1903           00263                 SKPNZ
@@ -411,13 +410,13 @@ Warning[207]: Found label after column 1. (Rutina_Contador_500_P2)
 00C2   1903           00301                 SKPNZ ; Salta la siguiente linea si CONTADOR_500_P2 != 255
 00C3   2???           00302                 GOTO Time_Increase
 Message[305]: Using default destination of 1 (file).
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE  8
+00C4   0AB7           00303                 INCF CONTADOR_500_P2
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE  8
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-00C4   0AB7           00303                 INCF CONTADOR_500_P2
 00C5   2???           00304                 GOTO Retornar_Rutina_Contador_500
                       00305 
 Warning[207]: Found label after column 1. (Time_Increase)
@@ -470,13 +469,13 @@ Warning[207]: Found label after column 1. (CONTINUAR_MD)
 00E3   0833           00345                 MOVFW MD
 00E4   023A           00346                 SUBWF CINCO,0
 00E5   1903           00347                 SKPNZ
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE  9
+00E6   2???           00348                 GOTO CONTINUAR_HU
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-00E6   2???           00348                 GOTO CONTINUAR_HU
 Message[305]: Using default destination of 1 (file).
 00E7   0AB3           00349                 INCF MD
 00E8   2???           00350                 GOTO End_Time_Logic
@@ -529,13 +528,13 @@ Warning[207]: Found label after column 1. (Refresh)
 0105   1C87           00389                 BTFSS PORTC,RC1
 0106   2???           00390                 GOTO Cambiar_Display1
 0107   1D07           00391                 BTFSS PORTC,RC2
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE 10
+0108   2???           00392                 GOTO Cambiar_Display2
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0108   2???           00392                 GOTO Cambiar_Display2
 0109   1D87           00393                 BTFSS PORTC,RC3
 010A   2???           00394                 GOTO Cambiar_Display3
 010B   1E07           00395                 BTFSS PORTC,RC4
@@ -588,13 +587,13 @@ Warning[207]: Found label after column 1. (Cambiar_Display3)
                       00438                 ;Display de Hora Unidad
 0127   1587           00439                 BSF PORTC,RC3
 0128   0834           00440                 MOVFW HU ; Muevo el contenido de HU a W
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE 11
+0129   2???           00441                 call TABLA
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE 11
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0129   2???           00441                 call TABLA
 012A   0088           00442                 MOVWF PORTD
 012B   1788           00443                 BSF PORTD,RD7 ; pone el punto
 012C   1207           00444                 BCF PORTC,RC4
@@ -631,7 +630,7 @@ Warning[207]: Found label after column 1. (Cambiar_Display5)
                       00473  
 Warning[205]: Found directive in column 1. (END)
                       00474 END ; Fin del programa
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE 12
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE 12
 
 
 SYMBOL TABLE
@@ -690,7 +689,7 @@ CCPR1L                            00000015
 CCPR2                             0000001B
 CCPR2H                            0000001C
 CCPR2L                            0000001B
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE 13
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE 13
 
 
 SYMBOL TABLE
@@ -749,7 +748,7 @@ GCEN                              00000007
 GIE                               00000007
 GO                                00000002
 GO_DONE                           00000002
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE 14
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE 14
 
 
 SYMBOL TABLE
@@ -808,7 +807,7 @@ PIE2                              0000008D
 PIR1                              0000000C
 PIR2                              0000000D
 PORTA                             00000005
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE 15
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE 15
 
 
 SYMBOL TABLE
@@ -867,7 +866,7 @@ RD3                               00000003
 RD4                               00000004
 RD5                               00000005
 RD6                               00000006
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE 16
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE 16
 
 
 SYMBOL TABLE
@@ -926,7 +925,7 @@ T0SE                              00000004
 T1CKPS0                           00000004
 T1CKPS1                           00000005
 T1CON                             00000010
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE 17
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE 17
 
 
 SYMBOL TABLE
@@ -985,7 +984,7 @@ TRISC7                            00000007
 TRISD                             00000088
 TRISD0                            00000000
 TRISD1                            00000001
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE 18
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE 18
 
 
 SYMBOL TABLE
@@ -1044,7 +1043,7 @@ _PWRTE_OFF                        00003FFF
 _PWRTE_ON                         00003FF7
 _RC_OSC                           00003FFF
 _WDT_OFF                          00003FFB
-MPASM  5.40                         RELOJ.ASM   6-27-2016  23:42:31         PAGE 19
+MPASM  5.40                         RELOJ.ASM   6-29-2016  12:28:34         PAGE 19
 
 
 SYMBOL TABLE
