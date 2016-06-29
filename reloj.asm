@@ -50,7 +50,7 @@ ORG 0X10 ; Comienzo del programa principal
 	CLRF STATUS ; limpio el STATUS REGISTER (asi me aseguro de estar en la pagina 0)
 	CLRF PORTC  ; PORTC Muestra el Display si su bit correspondiente esta en 0, ej: RD0 = 0 --> Display0 muestra un numero
 	CLRF PORTD	; PORTD Numero que voy a mostrar en el Display
-	CLRF PORTD  ; PORTB Puerto de entrada para manejar las interrupciones por Boton
+	CLRF PORTB  ; PORTB Puerto de entrada para manejar las interrupciones por Boton
 
 	BSF  STATUS,RP0 ; Cambio a la pagina 1
 
@@ -99,8 +99,7 @@ ORG 0X10 ; Comienzo del programa principal
 	CLRF INTCON ; Inicializo en 0 todos los bits del Registro INTCON
 	BSF  INTCON,T0IE ; Seteo el bit T0IE para poner en enable al Timer 0
 	
-	BSF INTCON, RBIE ; Seteo el bit RBIE para poner en enable la interrupcion por cambio en RB (RB Port Change Interrupt Enable bit)
-	BSF INTCON, INTE ; No se si va (?)
+	BSF INTCON, INTE ;  Seteo el bit RBIE para poner en enable las interrupcion externas
    
 	BSF  INTCON,GIE  ; Seteo el bit GIE para permitir las interrupciones globales
 
@@ -129,7 +128,8 @@ ORG 0X10 ; Comienzo del programa principal
 		BCF INTCON,GIE ; Desactivo las interrupciones globales
 		BTFSC INTCON,T0IF ; Si TOIF = 0 --> Salta la siguiente instruccion
 		GOTO Timer0_Interrupt   ; Si TOIF = 1 --> Interrupcion de Timer 0
-		GOTO Button_Interrupt ; Si TOIF = 0
+		BTFSC INTCON,INTF ; Si RB0 = 0 --> Salta la siguiente instruccion
+		GOTO Button_Interrupt ; Si RB0 = 1 --> Interrupcion de Boton
 		Retorno:
 		BSF INTCON,GIE ; Activo las interrupciones globales
 		RETFIE ; El programa principal retoma el control
@@ -179,8 +179,7 @@ ORG 0X10 ; Comienzo del programa principal
 	
 		GOTO MODO_CONFIGURACION
 		FIN_MODO_CONFIGURACION:
-		BCF INTCON,RBIF  ; Reseteo el RB change
-		BCF INTCON,INTF
+		BCF INTCON,INTF ; reset INTF
 		GOTO Retorno
 
 	RESET_CONTROL_BOTON
